@@ -9,9 +9,8 @@ import TabNavigation from './screens/TabNavigation';
 import Help from './screens/Help';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
+import { CartProvider } from './screens/CartContext';
 
-
-export const GlobalInfo = createContext();
 
 const Stack = createStackNavigator();
 
@@ -32,13 +31,12 @@ function StackNavigator() {
 }
 
 export default function App() {
-  const [name, setName] = useState('');
   return (
-    <GlobalInfo.Provider value={{ welname: name, setWelname: setName }}>
-    <NavigationContainer>
-      <StackNavigator/>
-    </NavigationContainer>
-    </GlobalInfo.Provider>
+    <CartProvider>
+      <NavigationContainer>
+        <StackNavigator />
+      </NavigationContainer>
+    </CartProvider>
   );
 }
 
@@ -50,3 +48,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+

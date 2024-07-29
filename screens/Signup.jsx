@@ -7,7 +7,6 @@ import { GlobalInfo } from '../App';
 
 const Signup = () => {
   const navigation = useNavigation();
-  const { setWelname } = useContext(GlobalInfo);
   const [name1, setName1] = useState('');
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,7 +15,6 @@ const Signup = () => {
     try {
       await AsyncStorage.setItem('user', JSON.stringify({ email, password, isLoggedIn: false }));
       console.log("Signup with:",email, password);
-      setWelname(name1);
       navigation.navigate("Login");
     } catch (error) {
       console.error("Error saving data", error);
